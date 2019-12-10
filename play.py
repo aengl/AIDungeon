@@ -318,7 +318,10 @@ def play_aidungeon_2():
             else:
                 if action == "":
                     action = ""
-                    result = story_manager.act(action)
+                    try:
+                        result = story_manager.act(action)
+                    except KeyboardInterrupt:
+                        continue
                     console_print(result)
 
                 elif action[0] == '"':
@@ -338,7 +341,11 @@ def play_aidungeon_2():
 
                     action = "\n> " + action + "\n"
 
-                result = "\n" + story_manager.act(action)
+                try:
+                    result = "\n" + story_manager.act(action)
+                except KeyboardInterrupt:
+                    continue
+
                 if len(story_manager.story.results) >= 2:
                     similarity = get_similarity(
                         story_manager.story.results[-1], story_manager.story.results[-2]
