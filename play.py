@@ -159,7 +159,7 @@ def play_aidungeon_2():
         + "ability to save games."
     )
 
-    upload_story = True
+    upload_story = False
 
     print("\nInitializing AI Dungeon! (This might take a few minutes)\n")
     generator = GPT2Generator()
@@ -320,7 +320,8 @@ def play_aidungeon_2():
                     action = ""
                     try:
                         result = story_manager.act(action)
-                    except KeyboardInterrupt:
+                    except Exception as e:
+                        console_print(e)
                         continue
                     console_print(result)
 
@@ -343,7 +344,8 @@ def play_aidungeon_2():
 
                 try:
                     result = "\n" + story_manager.act(action)
-                except KeyboardInterrupt:
+                except Exception as e:
+                    console_print(e)
                     continue
 
                 if len(story_manager.story.results) >= 2:
