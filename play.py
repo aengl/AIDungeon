@@ -343,6 +343,7 @@ def play_aidungeon_2():
                     action = "\n> " + action + "\n"
 
                 try:
+                    console_print(action)
                     result = "\n" + story_manager.act(action)
                 except Exception as e:
                     console_print(e)
